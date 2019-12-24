@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/jpbulman/listerJS.svg?token=HvzeUFf9iuSD6ifqQNLz&branch=master)](https://travis-ci.com/jpbulman/listerJS)
+
 # Setup
 After downloading this repo and moving into the directory, run
 
