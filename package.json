@@ -1,0 +1,17 @@
+{
+  "name": "lister",
+  "version": "1.0.0",
+  "description": "Making lists in JS easier",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "JP Bulman",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^6.2.2"
+  }
+}
