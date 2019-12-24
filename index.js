@@ -1,6 +1,15 @@
 let exportFunctions = {}
 
+/**
+ * Get the last <i>numberOfTails</i> elements in a list.
+ * e.g. listTail([1, 3, 4, 1, 5], 2) = [1, 5]
+ * listTail({"a" : 1, "b": 2, "c" : 3}, 2) = {"b": 2, "c" : 3}
+ * @param {Array | Object} list - The list to get the end of.
+ * @param {Integer} numberOfTails - The number of elements, starting from the end, to retrieve.
+ * @return {Array | Object} The value of the property.
+*/
 function listTail(list, numberOfTails){
+    //Makes sure the numberOfTails is an int
     if(! Number.isInteger(numberOfTails) ){
         throw new Error("The number of tails needs to be an integer")
     } else if(Array.isArray(list)){
@@ -15,10 +24,11 @@ function listTail(list, numberOfTails){
             throw "The number of tails: " + numberOfTails + ", exceeds the number of keys in the object: " + objLength
         } else {
             let tailObject = {}
-            const reversedKeys = Object.keys(list).reverse()
-            for(let i = 0; i < numberOfTails; i++){
-                tailObject[reversedKeys] = list[reversedKeys]
+            const keys = Object.keys(list)
+            for(let i = keys.length - numberOfTails; i < keys.length; i++){
+                tailObject[keys[i]] = list[keys[i]]
             }
+
             return tailObject
         }
     }
