@@ -12,6 +12,7 @@
   "author": "JP Bulman",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
     "mocha": "^6.2.2"
   }
 }
