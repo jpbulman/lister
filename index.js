@@ -11,7 +11,9 @@ let exportFunctions = {}
 function listTail(list, numberOfTails){
     //Makes sure the numberOfTails is an int
     if(! Number.isInteger(numberOfTails) ){
-        throw new Error("The number of tails needs to be an integer")
+        throw new Error("The number of tails: " + numberOfTails + ", needs to be an integer")
+    } else if (numberOfTails < 0){
+        throw new Error("The number of tails: " + numberOfTails + ", needs to be greater than 0")
     } else if(Array.isArray(list)){
         if(numberOfTails > list.length){
             throw "The number of tails: " + numberOfTails + ", exceeds the length of the array: " + list.length
