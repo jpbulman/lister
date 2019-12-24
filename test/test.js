@@ -46,10 +46,11 @@ describe('index', function() {
 
     //BEGIN: Error testing
     
+    const nonIntegerNumberOfTails = 1.5
     it('should throw an error when the number of tails is not an integer', function () {
       expect(function(){
-        index.listTail([], 1.5)
-      }).to.throw("The number of tails needs to be an integer")
+        index.listTail([], nonIntegerNumberOfTails)
+      }).to.throw("The number of tails: " + nonIntegerNumberOfTails + ", needs to be an integer")
     });
 
     const greaterNumberOfTailsArray = basicNumbersArray.length + 1
@@ -78,6 +79,12 @@ describe('index', function() {
       expect(function(){
         index.listTail({}, greaterNumberOfTailsObject)
       }).to.throw("The number of tails: " + greaterNumberOfTailsObject + ", exceeds the number of keys in the object: " + 0)
+    });
+
+    it('should throw an error when the number of tails is negative', function () {
+      expect(function(){
+        index.listTail({}, -1)
+      }).to.throw("The number of tails: " + -1 + ", needs to be greater than 0")
     });
 
     //END: Error testing
