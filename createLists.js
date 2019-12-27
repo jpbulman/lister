@@ -1,6 +1,10 @@
 let exportFunctions = {}
 
 function makeList(n, method = (i) => {return i}){
+    if(n < 0){
+        throw 'The number of elements to be made in the list: ' + n + ', is not greater than or equal to zero.'
+    }
+
     let arr = []
     for(let i = 0; arr.length < n; i++){
         const result = method(i)
@@ -8,17 +12,15 @@ function makeList(n, method = (i) => {return i}){
             if(result){
                 arr.push(i)
             }
-        } else {
+        } else if(typeof(result) === 'number') {
             arr.push(method(i))
+        } else {
+            throw 'The return type of the given procedure: ' + typeof(result) + ', is not a number or boolean.'
         }
     }
 
     return arr;
 }
 
-console.log(makeList(5, (i) => { return i % 2 == 0 })) //[0, 2, 4, 6, 8] 
-console.log(makeList(5, (i) => { return i * i})) //[0, 1, 4, 9, 16] 
-console.log(makeList(5, (i) => { return i})) //[0, 1, 2, 3, 4] 
-console.log(makeList(5)) //[0, 1, 2, 3, 4] 
-
+exportFunctions.makeList = makeList
 module.exports = exportFunctions
