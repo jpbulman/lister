@@ -168,6 +168,20 @@ describe('createLists', function(){
       )
     })
 
+    it('should return a list of 5 2\'s when n = 5 and the procedure takes no parameters and just returns 2', function(){
+      assert.deepEqual(
+        createLists.makeList(5, () => { return 2 }),
+        [2, 2, 2, 2, 2]
+      )
+    })
+
+    it('should return a list of 5 2\'s when n = 5 and the procedure takes one parameter and just returns 2', function(){
+      assert.deepEqual(
+        createLists.makeList(5, (i) => { return 2 }),
+        [2, 2, 2, 2, 2]
+      )
+    })
+
     // END NORMAL TESTING
 
     // BEGIN ERROR TESTING

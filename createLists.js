@@ -1,5 +1,6 @@
 let exportFunctions = {}
 
+//TODO: Document
 function makeList(n, method = (i) => {return i}){
     if(n < 0){
         throw 'The number of elements to be made in the list: ' + n + ', is not greater than or equal to zero.'
