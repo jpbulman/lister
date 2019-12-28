@@ -195,8 +195,14 @@ describe('createLists', function(){
 
     it('should throw an error when the return type of the procedure is not a number or boolean', function(){
       expect(function(){
-        createLists.makeList(5, () => { return {1 : a, 2 : b} })
-      })
+        createLists.makeList(5, () => { return {1 : 'a', 2 : 'b'} })
+      }).to.throw('The return type of the given procedure: object, is not a number or boolean')
+    })
+
+    it('should throw an error when n is not an integer', function(){
+      expect(function(){
+        createLists.makeList(5.5)
+      }).to.throw('N must be of type integer, but was instead to be found of type: number')
     })
 
     // END ERROR TESTING
