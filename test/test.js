@@ -168,6 +168,20 @@ describe('createLists', function(){
       )
     })
 
+    it('should return a list of 5 2\'s when n = 5 and the procedure takes no parameters and just returns 2', function(){
+      assert.deepEqual(
+        createLists.makeList(5, () => { return 2 }),
+        [2, 2, 2, 2, 2]
+      )
+    })
+
+    it('should return a list of 5 2\'s when n = 5 and the procedure takes one parameter and just returns 2', function(){
+      assert.deepEqual(
+        createLists.makeList(5, (i) => { return 2 }),
+        [2, 2, 2, 2, 2]
+      )
+    })
+
     // END NORMAL TESTING
 
     // BEGIN ERROR TESTING
@@ -181,8 +195,14 @@ describe('createLists', function(){
 
     it('should throw an error when the return type of the procedure is not a number or boolean', function(){
       expect(function(){
-        createLists.makeList(5, () => { return {1 : a, 2 : b} })
-      })
+        createLists.makeList(5, () => { return {1 : 'a', 2 : 'b'} })
+      }).to.throw('The return type of the given procedure: object, is not a number or boolean')
+    })
+
+    it('should throw an error when n is not an integer', function(){
+      expect(function(){
+        createLists.makeList(5.5)
+      }).to.throw('N must be of type integer, but was instead to be found of type: number')
     })
 
     // END ERROR TESTING

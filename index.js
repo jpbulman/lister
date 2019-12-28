@@ -6,7 +6,7 @@ let exportFunctions = {}
  * listTail({"a" : 1, "b": 2, "c" : 3}, 2) = {"b": 2, "c" : 3}
  * @param {Array | Object} list - The list to get the end of.
  * @param {Integer} numberOfTails - The number of elements, starting from the end, to retrieve.
- * @return {Array | Object} The value of the property.
+ * @return {Array | Object} - The value of the property.
 */
 function listTail(list, numberOfTails){
     //Makes sure the numberOfTails is an int
