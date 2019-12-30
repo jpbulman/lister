@@ -35,6 +35,7 @@ function makeList(n, method = (i) => {return i}){
     return arr;
 }
 
+//In construction
 function foldl(method, ...params){
     const typeOfParams = typeof(params[0])
     if(Array.isArray(params[0])){
@@ -52,6 +53,7 @@ function foldl(method, ...params){
     }
 }
 
+// TODO: Add type checking for array and error if not
 /**
  * Takes an array of items and lists and merges them all together into one single list
  * @param {Array} array - The array to be squashed 
@@ -60,6 +62,7 @@ function flattenArray(array){
     return [].concat(...array)
 }
 
+// TODO: Add indices to condition method
 /**
  * Removes any items that are true fot the given conditionMethod from the given list
  * @param {Array} list - List to potentially remove something from
@@ -117,7 +120,7 @@ function count(list, item){
  * @param {Array} list - This list to remove null and undefined from
  */
 function cleanList(list){
-    return list.filter((a) => { return a !== undefined || a !== null })
+    return removeAllInstancesOf(removeAllInstancesOf(list, null), undefined)
 }
 
 /**
@@ -138,12 +141,25 @@ function includesOr(list, ...items){
     return items.some((a) => { return list.includes(a) })
 }
 
+/**
+ * Returns a if the arrays' contents are equal
+ * @param {Array} arrOne 
+ * @param {Array} arrTwo 
+ */
+function arraysAreEqual(arrOne, arrTwo){
+    return arrOne.length === arrTwo.length && arrOne.filter((currentValue, idx) => currentValue !== arrTwo[idx]).length === 0
+}
+
+console.log(arraysAreEqual([1, 2, 4], [1, 2, 4]))
+
 exportFunctions.makeList = makeList
 exportFunctions.flattenArray = flattenArray
 exportFunctions.removeIf = removeIf
 exportFunctions.removeAllInstancesOf = removeAllInstancesOf
+exportFunctions.replaceAllInstancesOf = replaceAllInstancesOf
 exportFunctions.count = count
 exportFunctions.cleanList = cleanList
 exportFunctions.includesAnd = includesAnd
 exportFunctions.includesOr = includesOr
+exportFunctions.arraysAreEqual = arraysAreEqual
 module.exports = exportFunctions
