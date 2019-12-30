@@ -182,6 +182,12 @@ describe('createLists', function(){
       )
     })
 
+    // it('should return an object with each index mapped to the index cubed', function(){
+    //   assert.deepEqual(
+    //     createLists.makeList(5, (i) => { return })
+    //   )
+    // })
+
     // END NORMAL TESTING
 
     // BEGIN ERROR TESTING

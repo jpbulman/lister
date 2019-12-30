@@ -35,5 +35,115 @@ function makeList(n, method = (i) => {return i}){
     return arr;
 }
 
+function foldl(method, ...params){
+    const typeOfParams = typeof(params[0])
+    if(Array.isArray(params[0])){
+        let accumulator = params[0][0]
+        params.forEach((currentArray, currentArrayIndex) => {
+            currentArray.forEach((currentItem, currentItemIndex) => {
+                if(currentArrayIndex !== 0 || currentItemIndex !== 0){
+                    console.log(method(accumulator, currentItem), accumulator, currentItem)
+                    accumulator = method(accumulator, currentItem)
+                }
+            })
+        })
+
+        return accumulator
+    }
+}
+
+/**
+ * Takes an array of items and lists and merges them all together into one single list
+ * @param {Array} array - The array to be squashed 
+ */
+function flattenArray(array){
+    return [].concat(...array)
+}
+
+/**
+ * Removes any items that are true fot the given conditionMethod from the given list
+ * @param {Array} list - List to potentially remove something from
+ * @param {Function} conditionMethod - Method that returns true for items that are to be removed
+ */
+function removeIf(list, conditionMethod){
+    return list.filter((a) => {
+        const result = conditionMethod(a)
+        return !result
+    })
+}
+
+/**
+ * Removes every instance of the given item from the given list
+ * @param {Array} list - List to potentially remove item(s) from
+ * @param {*} item - The item to get rid of in the list
+ */
+function removeAllInstancesOf(list, item){
+    return list.filter((a) => {
+        return a !== item
+    })
+}
+
+/**
+ * Replaces all instances of the given item with the given replaceWith in the given list
+ * @param {Array} list - List to replace items in
+ * @param {*} item - The item inside the list to be replaced
+ * @param {*} replaceWith - The item to take the place of the other item
+ */
+function replaceAllInstancesOf(list, item, replaceWith){
+    let indOf = list.indexOf(item)
+    while(indOf !== -1){
+        list[indOf] = replaceWith
+        indOf = list.indexOf(item)
+    }
+
+    return list
+}
+
+/**
+ * Counts the number of times the given item occurs in the given list
+ * @param {Array} list - The list to check the number of occurences in 
+ * @param {*} item - The item to be checked for the number of occurences
+ */
+function count(list, item){
+    return list.filter((a) => { return a === item }).length
+}
+
+// function countWithReduce(list, item){
+//     return list.reduce((acc, currentItem) => { console.log(currentItem); return currentItem === item ? acc  + 1 : acc })
+// }
+
+/**
+ * Removes any instances of null or undefined in a list
+ * @param {Array} list - This list to remove null and undefined from
+ */
+function cleanList(list){
+    return list.filter((a) => { return a !== undefined || a !== null })
+}
+
+/**
+ * Returns if the list contains all of the items
+ * @param {Array} list 
+ * @param  {...any} items 
+ */
+function includesAnd(list, ...items){
+    return items.every((a) => { return list.includes(a) })
+}
+
+/**
+ * Returns if the list contains at least one of the items
+ * @param {Array} list 
+ * @param  {...any} items 
+ */
+function includesOr(list, ...items){
+    return items.some((a) => { return list.includes(a) })
+}
+
 exportFunctions.makeList = makeList
+exportFunctions.flattenArray = flattenArray
+exportFunctions.removeIf = removeIf
+exportFunctions.removeAllInstancesOf = removeAllInstancesOf
+exportFunctions.count = count
+exportFunctions.cleanList = cleanList
+exportFunctions.includesAnd = includesAnd
+exportFunctions.includesOr = includesOr
 module.exports = exportFunctions
