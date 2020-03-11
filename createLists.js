@@ -124,7 +124,7 @@ function cleanList(list) {
 }
 
 /**
- * Returns if the list contains all of the items
+ * Returns if the list contains all of the items in the given array
  * @param {Array} list 
  * @param  {...any} items 
  */
@@ -133,7 +133,7 @@ function includesAnd(list, ...items) {
 }
 
 /**
- * Returns if the list contains at least one of the items
+ * Returns if the list contains at least one of the items in the given array
  * @param {Array} list 
  * @param  {...any} items 
  */
@@ -143,8 +143,7 @@ function includesOr(list, ...items) {
 
 /**
  * Returns a if the array's contents are equal
- * @param {Array} arrOne 
- * @param {Array} arrTwo 
+ * @param {...Array} arrays 
  */
 function arraysAreEqual(...arrays) {
     for (curr of arrays) {
@@ -160,6 +159,14 @@ function arraysAreEqual(...arrays) {
     return true
 }
 
+/**
+ * Returns the value of the last element in the array without removing like .pop() would
+ * @param {Array} array 
+ */
+function peek(array) {
+    return array[array.length - 1]
+}
+
 exportFunctions.makeList = makeList
 exportFunctions.flattenArray = flattenArray
 exportFunctions.removeIf = removeIf
@@ -170,4 +177,5 @@ exportFunctions.cleanList = cleanList
 exportFunctions.includesAnd = includesAnd
 exportFunctions.includesOr = includesOr
 exportFunctions.arraysAreEqual = arraysAreEqual
+exportFunctions.peek = peek
 module.exports = exportFunctions

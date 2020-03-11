@@ -229,6 +229,12 @@ describe('createLists', () => {
       )
     })
 
+    it('should return the same array when given a list of 1-4', () => {
+      assert.deepEqual(
+        createLists.flattenArray(createLists.makeList(5)), createLists.makeList(5)
+      )
+    })
+
     const subArrayOne = [8, 6, 7]
     const subArrayTwo = [5, 3, 0]
     const subArrayThree = [9]
@@ -493,6 +499,20 @@ describe('createLists', () => {
     it('should return false when give two arrays that are the same and one that is different', () => {
       assert(
         !createLists.arraysAreEqual(createLists.makeList(5), createLists.makeList(4), createLists.makeList(5))
+      )
+    })
+  })
+
+  describe('#peek', () => {
+    it('should return the last item in the list when given a non empty array', () => {
+      assert.equal(
+        createLists.peek(createLists.makeList(2)), 1
+      )
+    })
+
+    it('should return undefined when given an empty list', () => {
+      assert.equal(
+        createLists.peek([]), undefined
       )
     })
   })
