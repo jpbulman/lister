@@ -5,30 +5,30 @@ let exportFunctions = {}
  * @param {Integer} n - The number of elements to be in the made list
  * @param {Function} method - The function to produce each item in the list, can take a parameter for the index and must return either a boolean or number
  */
-function makeList(n, method = (i) => {return i}){
+function makeList(n, method = (i) => { return i }) {
     // The list cannot have less than zero elements in it
-    if(n < 0){
+    if (n < 0) {
         throw 'The number of elements to be made in the list: ' + n + ', is not greater than or equal to zero.'
-    } else if(!Number.isInteger(n)){
-        throw 'N must be of type integer, but was instead to be found of type: ' + typeof(n)
+    } else if (!Number.isInteger(n)) {
+        throw 'N must be of type integer, but was instead to be found of type: ' + typeof (n)
     }
 
     let arr = []
     // Wait until the array is of the specified, n, size
-    for(let i = 0; arr.length < n; i++){
+    for (let i = 0; arr.length < n; i++) {
         // Function must return either a boolean or a number
         const result = method(i)
-        if(typeof(result) === 'boolean'){
+        if (typeof (result) === 'boolean') {
             // Only add on to the array if the procedure is true for the current index
-            if(result){
+            if (result) {
                 arr.push(i)
             }
-        } else if(typeof(result) === 'number') {
+        } else if (typeof (result) === 'number') {
             // If it is a number, just always push on to the array
             arr.push(method(i))
         } else {
             // If the method does not return a number or a boolean, throw an error
-            throw 'The return type of the given procedure: ' + typeof(result) + ', is not a number or boolean.'
+            throw 'The return type of the given procedure: ' + typeof (result) + ', is not a number or boolean.'
         }
     }
 
@@ -36,13 +36,13 @@ function makeList(n, method = (i) => {return i}){
 }
 
 //In construction
-function foldl(method, ...params){
-    const typeOfParams = typeof(params[0])
-    if(Array.isArray(params[0])){
+function foldl(method, ...params) {
+    const typeOfParams = typeof (params[0])
+    if (Array.isArray(params[0])) {
         let accumulator = params[0][0]
         params.forEach((currentArray, currentArrayIndex) => {
             currentArray.forEach((currentItem, currentItemIndex) => {
-                if(currentArrayIndex !== 0 || currentItemIndex !== 0){
+                if (currentArrayIndex !== 0 || currentItemIndex !== 0) {
                     console.log(method(accumulator, currentItem), accumulator, currentItem)
                     accumulator = method(accumulator, currentItem)
                 }
@@ -58,7 +58,7 @@ function foldl(method, ...params){
  * Takes an array of items and lists and merges them all together into one single list
  * @param {Array} array - The array to be squashed 
  */
-function flattenArray(array){
+function flattenArray(array) {
     return [].concat(...array)
 }
 
@@ -68,7 +68,7 @@ function flattenArray(array){
  * @param {Array} list - List to potentially remove something from
  * @param {Function} conditionMethod - Method that returns true for items that are to be removed
  */
-function removeIf(list, conditionMethod){
+function removeIf(list, conditionMethod) {
     return list.filter((a) => {
         const result = conditionMethod(a)
         return !result
@@ -80,7 +80,7 @@ function removeIf(list, conditionMethod){
  * @param {Array} list - List to potentially remove item(s) from
  * @param {*} item - The item to get rid of in the list
  */
-function removeAllInstancesOf(list, item){
+function removeAllInstancesOf(list, item) {
     return list.filter((a) => {
         return a !== item
     })
@@ -92,9 +92,9 @@ function removeAllInstancesOf(list, item){
  * @param {*} item - The item inside the list to be replaced
  * @param {*} replaceWith - The item to take the place of the other item
  */
-function replaceAllInstancesOf(list, item, replaceWith){
+function replaceAllInstancesOf(list, item, replaceWith) {
     let indOf = list.indexOf(item)
-    while(indOf !== -1){
+    while (indOf !== -1) {
         list[indOf] = replaceWith
         indOf = list.indexOf(item)
     }
@@ -107,7 +107,7 @@ function replaceAllInstancesOf(list, item, replaceWith){
  * @param {Array} list - The list to check the number of occurences in 
  * @param {*} item - The item to be checked for the number of occurences
  */
-function count(list, item){
+function count(list, item) {
     return list.filter((a) => { return a === item }).length
 }
 
@@ -119,7 +119,7 @@ function count(list, item){
  * Removes any instances of null or undefined in a list
  * @param {Array} list - This list to remove null and undefined from
  */
-function cleanList(list){
+function cleanList(list) {
     return removeAllInstancesOf(removeAllInstancesOf(list, null), undefined)
 }
 
@@ -128,7 +128,7 @@ function cleanList(list){
  * @param {Array} list 
  * @param  {...any} items 
  */
-function includesAnd(list, ...items){
+function includesAnd(list, ...items) {
     return items.every((a) => { return list.includes(a) })
 }
 
@@ -137,20 +137,28 @@ function includesAnd(list, ...items){
  * @param {Array} list 
  * @param  {...any} items 
  */
-function includesOr(list, ...items){
+function includesOr(list, ...items) {
     return items.some((a) => { return list.includes(a) })
 }
 
 /**
- * Returns a if the arrays' contents are equal
+ * Returns a if the array's contents are equal
  * @param {Array} arrOne 
  * @param {Array} arrTwo 
  */
-function arraysAreEqual(arrOne, arrTwo){
-    return arrOne.length === arrTwo.length && arrOne.filter((currentValue, idx) => currentValue !== arrTwo[idx]).length === 0
+function arraysAreEqual(...arrays) {
+    for (curr of arrays) {
+        // Just compare each array to the first one
+        curr.forEach((e, idx) => {
+            if (e !== arrays[0][idx]) {
+                return false
+            }
+        })
+        if (curr.length !== arrays[0].length)
+            return false
+    }
+    return true
 }
-
-console.log(arraysAreEqual([1, 2, 4], [1, 2, 4]))
 
 exportFunctions.makeList = makeList
 exportFunctions.flattenArray = flattenArray

@@ -1,8 +1,9 @@
 {
   "name": "lister",
-  "version": "1.0.0",
-  "description": "Making lists in JS easier",
+  "version": "0.0.1",
+  "description": "Making and manipulating lists in JS easier",
   "main": "index.js",
+  "scope": "jpbulman",
   "directories": {
     "test": "test"
   },
