@@ -167,6 +167,19 @@ function peek(array) {
     return array[array.length - 1]
 }
 
+function removeAllDuplicates(list) {
+    let items = new Set()
+    let newList = []
+    for (i of list) {
+        if (items.has(i)) {
+            continue
+        } else {
+            items.add(i)
+        }
+    }
+    return newList
+}
+
 exportFunctions.makeList = makeList
 exportFunctions.flattenArray = flattenArray
 exportFunctions.removeIf = removeIf
@@ -178,4 +191,5 @@ exportFunctions.includesAnd = includesAnd
 exportFunctions.includesOr = includesOr
 exportFunctions.arraysAreEqual = arraysAreEqual
 exportFunctions.peek = peek
+// exportFunctions.removeAllDuplicates = removeAllDuplicates
 module.exports = exportFunctions
