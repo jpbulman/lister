@@ -1,6 +1,6 @@
 var assert = require('assert')
 var expect = require('chai').expect
-const lister = require('lister')
+const lister = require('../lister.js')
 
 describe('lister', () => {
   describe('#listTail()', () => {
