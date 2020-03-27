@@ -168,13 +168,14 @@ function peek(array) {
 }
 
 function removeAllDuplicates(list) {
-    let items = new Set()
     let newList = []
+    let seenItems = new Set()
     for (i of list) {
-        if (items.has(i)) {
+        if (count(list, i) > 1 && seenItems.has(i)) {
             continue
         } else {
-            items.add(i)
+            seenItems.add(i)
+            newList.push(i)
         }
     }
     return newList
@@ -191,5 +192,5 @@ exportFunctions.includesAnd = includesAnd
 exportFunctions.includesOr = includesOr
 exportFunctions.arraysAreEqual = arraysAreEqual
 exportFunctions.peek = peek
-// exportFunctions.removeAllDuplicates = removeAllDuplicates
+exportFunctions.removeAllDuplicates = removeAllDuplicates
 module.exports = exportFunctions

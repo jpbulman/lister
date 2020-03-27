@@ -9,7 +9,6 @@ let exportFunctions = {}
  * @return {Array | Object} - The value of the property.
 */
 function listTail(list, numberOfTails = 1) {
-    console.log("wa")
     //Makes sure the numberOfTails is an int
     if (!Number.isInteger(numberOfTails)) {
         throw new Error("The number of tails: " + numberOfTails + ", needs to be an integer")

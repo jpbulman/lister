@@ -516,18 +516,30 @@ describe('lister', () => {
     })
   })
 
-  // describe('#removeAllDuplicates', () => {
-  //   it('should return an empty list when given an empty list', () => {
-  //     assert.deepEqual(
-  //       lister.removeAllDuplicates([]), []
-  //     )
-  //   })
+  describe('#removeAllDuplicates', () => {
+    it('should return an empty list when given an empty list', () => {
+      assert.deepEqual(
+        lister.removeAllDuplicates([]), []
+      )
+    })
 
-  //   const zeroToFour = lister.makeList(5)
-  //   it('should return the same list when there are no repeated elements', () => {
-  //     assert.deepEqual(
-  //       lister.removeAllDuplicates(zeroToFour), zeroToFour
-  //     )
-  //   })
-  // })
+    const zeroToFour = lister.makeList(5)
+    it('should return the same list when there are no repeated elements', () => {
+      assert.deepEqual(
+        lister.removeAllDuplicates(zeroToFour), zeroToFour
+      )
+    })
+
+    it('should remove all but the first instance of one duplicated item', () => {
+      assert.deepEqual(
+        lister.removeAllDuplicates([1, 1, 2, 5, 6, 1]), [1, 2, 5, 6]
+      )
+    })
+
+    it('should remove all but the first instance of multiple duplicated items', () => {
+      assert.deepEqual(
+        lister.removeAllDuplicates([1, 6, 6, 1, 3, 5, 3, 6]), [1, 6, 3, 5]
+      )
+    })
+  })
 })
