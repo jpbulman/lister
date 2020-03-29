@@ -1,4 +1,5 @@
 module.exports = {
-    ...require('./other.js'),
-    ...require('./createLists.js')
+    ...require('./listProperties.js'),
+    ...require('./createLists.js'),
+    ...require('./modifyLists.js')
 }

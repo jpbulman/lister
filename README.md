@@ -1,7 +1,24 @@
 [![Build Status](https://travis-ci.com/jpbulman/listerJS.svg?token=HvzeUFf9iuSD6ifqQNLz&branch=master)](https://travis-ci.com/jpbulman/listerJS)
 
-# Setup
-After downloading this repo and moving into the directory, run
+## Installation
+To install Lister, simply use
+
+```
+npm i lister
+```
+
+## Usage
+```
+const lister = require('lister')
+console.log(lister.makeList(4))
+// [0, 1, 2, 3]
+```
+
+## Documentation
+Coming soon!
+
+## Development Setup
+After cloning the repo, run
 
 ```npm install```
 
