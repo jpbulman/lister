@@ -44,94 +44,47 @@ describe('lister', () => {
 
     //END: Array testing
 
-    //BEGIN: Error testing
+    // //BEGIN: Object testing
 
-    const nonIntegerNumberOfTails = 1.5
-    it('should throw an error when the number of tails is not an integer', function () {
-      expect(() => {
-        lister.listTail([], nonIntegerNumberOfTails)
-      }).to.throw("The number of tails: " + nonIntegerNumberOfTails + ", needs to be an integer")
-    })
+    // it('should return an empty object when an empty object and 0 are given', () => {
+    //   assert.deepEqual(
+    //     lister.listTail({}, 0),
+    //     {}
+    //   )
+    // })
 
-    const greaterNumberOfTailsArray = basicNumbersArray.length + 1
-    it('should throw an error when the number of tails exceeds the length of the array', function () {
-      expect(() => {
-        lister.listTail(basicNumbersArray, greaterNumberOfTailsArray)
-      }).to.throw("The number of tails: " + greaterNumberOfTailsArray + ", exceeds the length of the array: " + basicNumbersArray.length)
-    })
+    // it('should return an object with the last two key/values when an object and 2 are given', () => {
+    //   assert.deepEqual(
+    //     lister.listTail(basicLettersAndNumbersObjectMap, 2),
+    //     {
+    //       c: 3,
+    //       d: 4
+    //     }
+    //   )
+    // })
 
-    const greaterThanEmptyTailsValue = 5
-    it('should throw an error when the array is empty and the number of tails is non-zero', function () {
-      expect(() => {
-        lister.listTail([], greaterThanEmptyTailsValue)
-      }).to.throw("The number of tails: " + greaterThanEmptyTailsValue + ", exceeds the length of the array: " + 0)
-    })
+    // it('should return an empty object with an filled object and 0 for the number of tails', () => {
+    //   assert.deepEqual(
+    //     lister.listTail(basicLettersAndNumbersObjectMap, 0),
+    //     {}
+    //   )
+    // })
 
-    const objLength = Object.keys(basicLettersAndNumbersObjectMap).length
-    const greaterNumberOfTailsObject = objLength + 1
-    it('should throw an error when the number of tails exceeds the number of keys in the object', function () {
-      expect(() => {
-        lister.listTail(basicLettersAndNumbersObjectMap, greaterNumberOfTailsObject)
-      }).to.throw("The number of tails: " + greaterNumberOfTailsObject + ", exceeds the number of keys in the object: " + objLength)
-    })
-
-    it('should throw an error when the object is empty and the number of tails is non-zero', function () {
-      expect(() => {
-        lister.listTail({}, greaterNumberOfTailsObject)
-      }).to.throw("The number of tails: " + greaterNumberOfTailsObject + ", exceeds the number of keys in the object: " + 0)
-    })
-
-    it('should throw an error when the number of tails is negative', function () {
-      expect(() => {
-        lister.listTail({}, -1)
-      }).to.throw("The number of tails: " + -1 + ", needs to be greater than 0")
-    })
-
-    //END: Error testing
-
-    //BEGIN: Object testing
-
-    it('should return an empty object when an empty object and 0 are given', () => {
-      assert.deepEqual(
-        lister.listTail({}, 0),
-        {}
-      )
-    })
-
-    it('should return an object with the last two key/values when an object and 2 are given', () => {
-      assert.deepEqual(
-        lister.listTail(basicLettersAndNumbersObjectMap, 2),
-        {
-          c: 3,
-          d: 4
-        }
-      )
-    })
-
-    it('should return an empty object with an filled object and 0 for the number of tails', () => {
-      assert.deepEqual(
-        lister.listTail(basicLettersAndNumbersObjectMap, 0),
-        {}
-      )
-    })
-
-    it('should return the same object if given the object length', () => {
-      assert.deepEqual(
-        lister.listTail(basicLettersAndNumbersObjectMap, Object.keys(basicLettersAndNumbersObjectMap).length),
-        basicLettersAndNumbersObjectMap
-      )
-    })
+    // it('should return the same object if given the object length', () => {
+    //   assert.deepEqual(
+    //     lister.listTail(basicLettersAndNumbersObjectMap, Object.keys(basicLettersAndNumbersObjectMap).length),
+    //     basicLettersAndNumbersObjectMap
+    //   )
+    // })
 
 
-    //END: Object testing
+    // //END: Object testing
 
   })
 })
 
 describe('lister', () => {
   describe('#makeList', () => {
-
-    // BEGIN NORMAL TESTING
     it('should return an empty list when n = 0 and a procedure is not specified', () => {
       assert.deepEqual(
         lister.makeList(0),
@@ -146,16 +99,16 @@ describe('lister', () => {
       )
     })
 
-    it('should return the first 5 even number when n = 5 and the procedure is a boolean function for testing if a number is even or not', () => {
+    it('should return the first 5 even numbers when n = 5 and the procedure is a boolean function for testing if a number is even or not', () => {
       assert.deepEqual(
-        lister.makeList(5, (i) => { return i % 2 == 0 }),
+        lister.makeList(5, 0, (i) => { return i % 2 == 0 }),
         [0, 2, 4, 6, 8]
       )
     })
 
     it('should return a list (length 5) of the value of the indices squared when n = 5 and the procedure is a an int function returning the value squared', () => {
       assert.deepEqual(
-        lister.makeList(5, (i) => { return i * i }),
+        lister.makeList(5, 0, (i) => { return i * i }),
         [0, 1, 4, 9, 16]
       )
     })
@@ -169,48 +122,30 @@ describe('lister', () => {
 
     it('should return a list of 5 2\'s when n = 5 and the procedure takes no parameters and just returns 2', () => {
       assert.deepEqual(
-        lister.makeList(5, () => { return 2 }),
+        lister.makeList(5, 0, () => { return 2 }),
         [2, 2, 2, 2, 2]
       )
     })
 
     it('should return a list of 5 2\'s when n = 5 and the procedure takes one parameter and just returns 2', () => {
       assert.deepEqual(
-        lister.makeList(5, (i) => { return 2 }),
+        lister.makeList(5, 0, (i) => { return 2 }),
         [2, 2, 2, 2, 2]
       )
     })
+
+    // it('should return the numbers 1-5 when given a starting postion of 1, no procedure, and length 5', () => {
+    //   assert.deepEqual(
+    //     lister.makeList(5, 1),
+    //     [1, 2, 3, 4, 5]
+    //   )
+    // })
 
     // it('should return an object with each lister mapped to the lister cubed', () =>{
     //   assert.deepEqual(
     //     lister.makeList(5, (i) => { return })
     //   )
     // })
-
-    // END NORMAL TESTING
-
-    // BEGIN ERROR TESTING
-
-    const negNumberOfElements = -1
-    it('Makes sure that an error is thrown when n < 0 and a procedure is not specified', () => {
-      expect(() => {
-        lister.makeList(negNumberOfElements)
-      }).to.throw('The number of elements to be made in the list: ' + negNumberOfElements + ', is not greater than or equal to zero.')
-    })
-
-    it('should throw an error when the return type of the procedure is not a number or boolean', () => {
-      expect(() => {
-        lister.makeList(5, () => { return { 1: 'a', 2: 'b' } })
-      }).to.throw('The return type of the given procedure: object, is not a number or boolean')
-    })
-
-    it('should throw an error when n is not an integer', () => {
-      expect(() => {
-        lister.makeList(5.5)
-      }).to.throw('N must be of type integer, but was instead to be found of type: number')
-    })
-
-    // END ERROR TESTING
   })
 
   describe('#flattenArray', () => {
@@ -269,7 +204,7 @@ describe('lister', () => {
         //                    0-5
         lister.removeIf(lister.makeList(6), (a) => { return a % 2 === 0 }),
         //1, 3, 5
-        lister.makeList(3, (a) => a % 2 !== 0)
+        lister.makeList(3, 0, (a) => a % 2 !== 0)
       )
     })
 
@@ -311,7 +246,7 @@ describe('lister', () => {
       )
     })
 
-    const twosAndFours = lister.makeList(6, (i) => i < 3 ? 2 : 4)
+    const twosAndFours = lister.makeList(6, 0, (i) => i < 3 ? 2 : 4)
     it('should remove the first three twos when given [2, 2, 2, 4, 4, 4] and 2', () => {
       assert.deepEqual(
         lister.removeAllInstancesOf(twosAndFours, 2),
@@ -328,7 +263,7 @@ describe('lister', () => {
       )
     })
 
-    const negAndPosOnes = lister.makeList(4, (i) => i < 2 ? -1 : 1)
+    const negAndPosOnes = lister.makeList(4, 0, (i) => i < 2 ? -1 : 1)
     it('should return a list of all ones when given [-1, -1, 1, 1] and replacing -1 with 1', () => {
       assert.deepEqual(
         lister.replaceAllInstancesOf(negAndPosOnes, -1, 1),
@@ -360,7 +295,7 @@ describe('lister', () => {
       )
     })
 
-    const oneToThreeAndTwo = lister.makeList(4, (i) => i < 3 ? i : 2)
+    const oneToThreeAndTwo = lister.makeList(4, 0, (i) => i < 3 ? i : 2)
     it('should return two when given [1, 2, 3, 2] and is looking for two', () => {
       assert.equal(
         lister.count(oneToThreeAndTwo, 2),
@@ -368,7 +303,7 @@ describe('lister', () => {
       )
     })
 
-    const fives = lister.makeList(5, () => 5)
+    const fives = lister.makeList(5, 0, () => 5)
     it('should return the length of the list when given a list of only the element it is looking for', () => {
       assert.equal(
         lister.count(fives, 5),
