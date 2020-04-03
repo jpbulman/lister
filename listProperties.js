@@ -101,11 +101,83 @@ function peek(array) {
     return array[array.length - 1]
 }
 
+/**
+ * Returns the sum of all of the elements of the list
+ * @param {Array} list - The list to find the sum of
+ */
+function sum(list) {
+    return list.reduce((a, b) => a + b, 0)
+}
+
+/**
+ * Finds the average of a list of numbers
+ * @param {Array} list - The list to find the average of
+ */
+function mean(list) {
+    return sum(list) / list.length
+}
+
+/**
+ * Returns the median of a list of numbers
+ * @param {Array} list - The list to find the median of 
+ */
+function median(list) {
+    list.sort((a, b) => a - b)
+    return list.length % 2 === 0 ? (list[Math.floor(list.length / 2) - 1] + list[Math.floor(list.length / 2)]) / 2 : list[Math.floor(list.length / 2)]
+}
+
+/**
+ * Returns the mode (the number that appears most in the list).
+ * @param {Arrray} list - The list to find the mode of
+ */
+function mode(list) {
+    let count = {}
+    for (i of list) {
+        if (i in count) {
+            count[i] += 1
+        } else {
+            count[i] = 1
+        }
+    }
+
+    let maxItems = [Object.keys(count)[0]]
+    for (key in count) {
+        if (count[key] > count[maxItems]) {
+            maxItems = [key]
+        } else if (count[key] > count[maxItems]) {
+            maxItems.push(key)
+        }
+    }
+
+    return maxItems
+}
+
+/**
+ * Returns a list of indices of elements that satisfy a boolean function
+ * @param {Array} list - List to find the indices that satisfy the conditional
+ * @param {Function} boolFunc - Function that must return a boolean saying if the given element of the list satisfys the condition
+ */
+function indicesWhere(list, boolFunc) {
+    let indList = []
+    list.forEach((el, idx) => {
+        if (boolFunc(el)) {
+            indList.push(idx)
+        }
+    })
+
+    return indList
+}
+
 exportFunctions.listTail = listTail
 exportFunctions.count = count
 exportFunctions.includesAnd = includesAnd
 exportFunctions.includesOr = includesOr
 exportFunctions.arraysAreEqual = arraysAreEqual
 exportFunctions.peek = peek
+exportFunctions.sum = sum
+exportFunctions.mean = mean
+exportFunctions.median = median
+exportFunctions.mode = mode
+exportFunctions.indicesWhere = indicesWhere
 
 module.exports = exportFunctions

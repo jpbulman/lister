@@ -8,7 +8,7 @@ npm i lister
 ```
 
 ## Usage
-```
+```js
 const lister = require('lister')
 console.log(lister.makeList(4))
 // [0, 1, 2, 3]
@@ -24,7 +24,7 @@ After cloning the repo, run
 
 to get all of the dependencies. 
 
-# Testing
+## Testing
 To run the test suite, simply run 
 
 ```npm test```

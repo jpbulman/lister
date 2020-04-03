@@ -1,5 +1,5 @@
-var assert = require('assert')
-var expect = require('chai').expect
+const assert = require('assert')
+// var expect = require('chai').expect
 const lister = require('../lister.js')
 
 describe('lister', () => {
