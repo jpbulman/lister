@@ -178,5 +178,6 @@ exportFunctions.sum = sum
 exportFunctions.mean = mean
 exportFunctions.median = median
 exportFunctions.mode = mode
+exportFunctions.indicesWhere = indicesWhere
 
 module.exports = exportFunctions

@@ -63,4 +63,42 @@ describe('#listProperties', () => {
             assert.equal(lister.median([4, -1, 3, 1, 0, -7, 9, -1]), 0.5)
         })
     })
+
+    describe('#sum', () => {
+        it('should return 0 when given an empty array', () => {
+            assert.equal(lister.sum([]), 0)
+        })
+
+        it('should return the only number in the list when given an array of length one', () => {
+            assert.equal(lister.sum([-8]), -8)
+        })
+
+        it('should return all of the numbers added up together when given a list of numbers of length n', () => {
+            assert.equal(lister.sum([-1, 0, 2, 8, -5, -4]), 0)
+        })
+    })
+
+    describe('#indicesWhere', () => {
+        it('should return an empty list when given an empty list and empty function', () => {
+            assert.deepEqual(lister.indicesWhere([], () => { }), [])
+        })
+
+        it('should return an empty list when given an empty list and a non empty function', () => {
+            assert.deepEqual(lister.indicesWhere([], (element) => element % 2 === 0), [])
+        })
+
+        it('should return an array of the indicies of all even numbers when given a non empty list and a function that checks for even numbers', () => {
+            assert.deepEqual(
+                lister.indicesWhere([1, 2, 4, 0, 9, 10, 3, 5, 6], (el) => el % 2 === 0),
+                [1, 2, 3, 5, 8]
+            )
+        })
+
+        it('should return an empty list when given a list full of odd numbers and a function looking for even numbers', () => {
+            assert.deepEqual(
+                lister.indicesWhere([7, 5, 3, 9, 1, 1, 3, 5], (el) => el % 2 === 0),
+                []
+            )
+        })
+    })
 })
