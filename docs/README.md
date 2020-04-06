@@ -87,13 +87,13 @@ lister.mean(oneToHund)
 #### median
 Returns the median of a list of numbers
 ```js
-const list = [5, 9, 0]
+const list = [8, 6, 7]
 lister.median(list)
-// 5
+// 7
 
-const evenList = [3, 0, 5, 1]
+const evenList = [5, 3, 0, 9]
 lister.median(evenList)
-// 2
+// 4
 ```
 
 #### mode
@@ -105,8 +105,57 @@ lister.mode(list)
 ```
 
 #### indicesWhere
-Returns a list of indices of elements that satisfy a boolean function
+Returns a list of indices of the elements that satisfy a boolean function
 ```js
 const oneToTen = [0, 2, 3, 9, 4, -2]
 lister.indicesWhere(oneToTen, (el) => el % 2 === 0)
 // [0, 1, 4, 5]
+```
+
+## Modify Lists
+A list of functions which, when given a list, will return a modified version of the list.
+
+#### flattenArray
+Takes an array of items and lists and merges them all together into one single list
+
+```js
+lister.flattenArray([1, [2, 3, [4]], 5])
+// [1, 2, 3, 4, 5]
+```
+
+#### removeIf
+Removes any items from the list if they return ```true``` for the given condition method
+```js
+const list = lister.makeList(5, 1) // [1, 2, 3, 4, 5] 
+lister.removeIf(list, (el) => el % 2 === 0)
+// [1, 3, 5]
+```
+#### removeAllInstancesOf
+Removes every instance of the given item from the given list
+```js
+const list = [2, 2, 3, 3, 4, 0]
+lister.removeAllInstancesOf(list, 2)
+// [3, 3, 4, 0]
+```
+
+#### replaceAllInstancesOf
+Replaces all instances of the given item with the given replace item in the given list.
+```js
+const list = lister.makeList(4, 1) // [1, 2, 3, 4]
+lister.replaceAllInstancesOf(list, 2, 0)
+// [1, 0, 3, 4]
+```
+
+#### cleanList
+Removes any instances of null or undefined in a list
+```js
+lister.cleanList([1, null, 3, 5, undefined])
+// [1, 3, 5]
+```
+
+#### removeAllDuplicates
+Removes all duplicated items in the list. Preserves the first instance of each unique item.
+```js
+lister.removeAllDuplicates([1, 4, 1, 5, 9, 9])
+// [1, 4, 5, 9]
+```
