@@ -76,7 +76,7 @@ function includesOr(list, ...items) {
 }
 
 /**
- * Returns a if the array's contents are equal
+ * Returns true if the array's contents are equal
  * @param {...Array} arrays 
  */
 function arraysAreEqual(...arrays) {

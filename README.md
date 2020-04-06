@@ -15,7 +15,9 @@ console.log(lister.makeList(4))
 ```
 
 ## Documentation
-Coming soon!
+Uses [docsify](https://github.com/docsifyjs/docsify).
+
+Currently not deployed, but can be run locally; see ```docInstructions.md```.
 
 ## Development Setup
 After cloning the repo, run

@@ -13,7 +13,7 @@ function flattenArray(array) {
 
 // TODO: Add indices to condition method
 /**
- * Removes any items that are true fot the given conditionMethod from the given list
+ * Removes any items that are true for the given conditionMethod from the given list
  * @param {Array} list - List to potentially remove something from
  * @param {Function} conditionMethod - Method that returns true for items that are to be removed
  */
@@ -24,6 +24,7 @@ function removeIf(list, conditionMethod) {
     })
 }
 
+// TODO: Add support for removing multiple items
 /**
  * Removes every instance of the given item from the given list
  * @param {Array} list - List to potentially remove item(s) from
