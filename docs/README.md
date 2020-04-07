@@ -1,27 +1,33 @@
 # Lister.JS
 A library to make using lists in JavaScript easier.
 
-## Create Lists
-A series of functions that will produce lists.
+## Getting Started
 
-#### makeList
-Builds a list that is n items long with a given procedure. 
+<!-- ## Create Lists
+A series of functions that will produce lists. -->
+
+<!-- ## List Properties
+
+A list of function which, when given a list, will return some sort of value pertaining to a property of that list. -->
+
+<!-- ## Modify Lists
+A list of functions which, when given a list, will return a modified version of the list. -->
+
+#### arraysAreEqual
+Returns true if the array's contents are equal
 ```js
-// Gets the first 5 even numbers, starting at 0
-lister.makeList(5, 0, (el) => el % 2 === 0)
-// [0, 2, 4, 6, 8]
+const oneToFour = lister.makeList(4, 1) // [1, 2, 3, 4]
+const altOneToFour = [1, 2, 3, 4]
+const why = lister.makeList(5, 0).pop() // [1, 2, 3, 4]
+lister.arraysAreEqual(oneToFour, altOneToFour, why)
+// true
 ```
 
-## List Properties
-
-A list of function which, when given a list, will return some sort of value pertaining to a property of that list.
-
-#### listTail
-Gets the last <i>n</i> elements in a given list.
+#### cleanList
+Removes any instances of null or undefined in a list
 ```js
-// Gets the last 2 items
-lister.listTail([1, 1, 2, 3, 5, 8], 2)
-// [5, 8]
+lister.cleanList([1, null, 3, 5, undefined])
+// [1, 3, 5]
 ```
 
 #### count
@@ -31,6 +37,13 @@ Returns the number of times something appears in a list
 const dogStrArr = "the dog barks at the tree".split(" ")
 lister.count(dogStrArr, "the")
 // 2
+```
+
+#### flattenArray
+Takes an array of items and lists and merges them all together into one single list
+```js
+lister.flattenArray([1, [2, 3, [4]], 5])
+// [1, 2, 3, 4, 5]
 ```
 
 #### includesAnd
@@ -52,28 +65,28 @@ lister.includesOr(oneToFour, twoAndFive)
 // true
 ```
 
-#### arraysAreEqual
-Returns true if the array's contents are equal
+#### indicesWhere
+Returns a list of indices of the elements that satisfy a boolean function
 ```js
-const oneToFour = lister.makeList(4, 1) // [1, 2, 3, 4]
-const altOneToFour = [1, 2, 3, 4]
-const why = lister.makeList(5, 0).pop() // [1, 2, 3, 4]
-lister.arraysAreEqual(oneToFour, altOneToFour, why)
-// true
+const oneToTen = [0, 2, 3, 9, 4, -2]
+lister.indicesWhere(oneToTen, (el) => el % 2 === 0)
+// [0, 1, 4, 5]
 ```
 
-#### peek
-Returns the value of the last element in the array without removing it, like .pop() would
+#### listTail
+Gets the last <i>n</i> elements in a given list.
 ```js
-lister.peek([1, 2, 3, 4])
-// 4
+// Gets the last 2 items
+lister.listTail([1, 1, 2, 3, 5, 8], 2)
+// [5, 8]
 ```
-#### sum
-Returns the sum of all of the elements of the list
+
+#### makeList
+Builds a list that is n items long with a given procedure. 
 ```js
-const oneToHund = lister.makeList(100, 1)
-lister.sum(oneToHund)
-// 5050
+// Gets the first 5 even numbers, starting at 0
+lister.makeList(5, 0, (el) => el % 2 === 0)
+// [0, 2, 4, 6, 8]
 ```
 
 #### mean
@@ -104,23 +117,26 @@ lister.mode(list)
 // [2, 3]
 ```
 
-#### indicesWhere
-Returns a list of indices of the elements that satisfy a boolean function
+#### peek
+Returns the value of the last element in the array without removing it, like .pop() would
 ```js
-const oneToTen = [0, 2, 3, 9, 4, -2]
-lister.indicesWhere(oneToTen, (el) => el % 2 === 0)
-// [0, 1, 4, 5]
+lister.peek([1, 2, 3, 4])
+// 4
 ```
 
-## Modify Lists
-A list of functions which, when given a list, will return a modified version of the list.
-
-#### flattenArray
-Takes an array of items and lists and merges them all together into one single list
-
+#### removeAllDuplicates
+Removes all duplicated items in the list. Preserves the first instance of each unique item.
 ```js
-lister.flattenArray([1, [2, 3, [4]], 5])
-// [1, 2, 3, 4, 5]
+lister.removeAllDuplicates([1, 4, 1, 5, 9, 9])
+// [1, 4, 5, 9]
+```
+
+#### removeAllInstancesOf
+Removes every instance of the given item from the given list
+```js
+const list = [2, 2, 3, 3, 4, 0]
+lister.removeAllInstancesOf(list, 2)
+// [3, 3, 4, 0]
 ```
 
 #### removeIf
@@ -129,13 +145,6 @@ Removes any items from the list if they return ```true``` for the given conditio
 const list = lister.makeList(5, 1) // [1, 2, 3, 4, 5] 
 lister.removeIf(list, (el) => el % 2 === 0)
 // [1, 3, 5]
-```
-#### removeAllInstancesOf
-Removes every instance of the given item from the given list
-```js
-const list = [2, 2, 3, 3, 4, 0]
-lister.removeAllInstancesOf(list, 2)
-// [3, 3, 4, 0]
 ```
 
 #### replaceAllInstancesOf
@@ -146,16 +155,10 @@ lister.replaceAllInstancesOf(list, 2, 0)
 // [1, 0, 3, 4]
 ```
 
-#### cleanList
-Removes any instances of null or undefined in a list
+#### sum
+Returns the sum of all of the elements of the list
 ```js
-lister.cleanList([1, null, 3, 5, undefined])
-// [1, 3, 5]
-```
-
-#### removeAllDuplicates
-Removes all duplicated items in the list. Preserves the first instance of each unique item.
-```js
-lister.removeAllDuplicates([1, 4, 1, 5, 9, 9])
-// [1, 4, 5, 9]
+const oneToHund = lister.makeList(100, 1)
+lister.sum(oneToHund)
+// 5050
 ```

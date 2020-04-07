@@ -32,7 +32,11 @@ function removeIf(list, conditionMethod) {
  */
 function removeAllInstancesOf(list, item) {
     return list.filter((a) => {
-        return a !== item
+        if (isNaN(item)) {
+            return !isNaN(a)
+        } else {
+            return a !== item
+        }
     })
 }
 
@@ -57,7 +61,7 @@ function replaceAllInstancesOf(list, item, replaceWith) {
  * @param {Array} list - This list to remove null and undefined from
  */
 function cleanList(list) {
-    return removeAllInstancesOf(removeAllInstancesOf(list, null), undefined)
+    return removeAllInstancesOf(removeAllInstancesOf(removeAllInstancesOf(list, null), undefined), NaN)
 }
 
 /**

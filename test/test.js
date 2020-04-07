@@ -253,6 +253,13 @@ describe('lister', () => {
         [4, 4, 4]
       )
     })
+
+    it('should remove all instances of NaN when given a list with NaN', () => {
+      assert.deepEqual(
+        lister.removeAllInstancesOf([1, 2, NaN], NaN),
+        [1, 2]
+      )
+    });
   })
 
   describe('#replaceAllInstancesOf', () => {
@@ -320,20 +327,27 @@ describe('lister', () => {
       )
     })
 
-    it('should return an empty list when given a list of only null and undefined', () => {
+    it('should return an empty list when given a list of null, undefined, and NaN', () => {
       assert.deepEqual(
-        lister.cleanList([null, undefined, null, null, undefined]),
+        lister.cleanList([null, undefined, null, null, undefined, NaN]),
         []
       )
     })
 
-    const mixedBag = [undefined, 1, null, 2, undefined, 3]
+    const mixedBag = [undefined, 1, null, 2, undefined, 3, NaN]
     it('should return a list of the number one to three when given the mixedBag', () => {
       assert.deepEqual(
         lister.cleanList(mixedBag),
         [1, 2, 3]
       )
     })
+
+    it('should return then list itself when there are no faults', () => {
+      assert.deepEqual(
+        lister.cleanList([1, 2, 3, 4]),
+        [1, 2, 3, 4]
+      )
+    });
   })
 
   // TODO: Add more test with different types of elements at the end
