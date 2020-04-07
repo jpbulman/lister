@@ -25,5 +25,23 @@ function makeList(n, startingValue = 0, method = (i) => { return i }) {
     return arr;
 }
 
+function randomNumbers(amount, min, max, type) {
+    let arr = []
+    for (let i = 0; i < amount; i++) {
+        if (type === 'float') {
+            const randNum = (Math.random() * max) + min
+            arr.push(randNum)
+        } else {
+            // Plus one includes the max
+            const randNum = Math.floor((Math.random() * (max + 1)) + min)
+            arr.push(randNum)
+        }
+    }
+
+    return arr
+}
+
+console.log(randomNumbers(10, 0, 10, 'whole'))
+
 exportFunctions.makeList = makeList
 module.exports = exportFunctions
