@@ -1,6 +1,6 @@
 {
   "name": "lister",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Making and manipulating lists in JS easier",
   "main": "lister.js",
   "scope": "jpbulman",
