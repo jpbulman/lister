@@ -41,7 +41,7 @@ function randomNumbers(amount, min, max, type) {
     return arr
 }
 
-console.log(randomNumbers(10, 0, 10, 'whole'))
+// console.log(randomNumbers(10, 0, 10, 'whole'))
 
 exportFunctions.makeList = makeList
 module.exports = exportFunctions
