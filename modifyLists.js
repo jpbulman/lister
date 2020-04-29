@@ -47,13 +47,13 @@ function removeAllInstancesOf(list, item) {
  * @param {*} replaceWith - The item to take the place of the other item
  */
 function replaceAllInstancesOf(list, item, replaceWith) {
-    let indOf = list.indexOf(item)
-    while (indOf !== -1) {
-        list[indOf] = replaceWith
-        indOf = list.indexOf(item)
-    }
-
-    return list
+    return list.map(currEl => {
+        if (currEl === item) {
+            return replaceWith
+        } else {
+            return currEl
+        }
+    })
 }
 
 /**
@@ -69,17 +69,15 @@ function cleanList(list) {
  * @param {Array} list - The list to remove all duplicates from 
  */
 function removeAllDuplicates(list) {
-    let newList = []
     let seenItems = new Set()
-    for (i of list) {
-        if (listProperties.count(list, i) > 1 && seenItems.has(i)) {
-            continue
+    return list.filter(currEl => {
+        if (listProperties.count(list, currEl) > 1 && seenItems.has(currEl)) {
+            return false
         } else {
-            seenItems.add(i)
-            newList.push(i)
+            seenItems.add(currEl)
+            return true
         }
-    }
-    return newList
+    })
 }
 
 exportFunctions.flattenArray = flattenArray

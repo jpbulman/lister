@@ -10,20 +10,6 @@ let exportFunctions = {}
 */
 function listTail(list, numberOfTails = 1) {
     return list.slice(list.length - numberOfTails)
-    // } else if (typeof (list) === "object") {
-    //     const objLength = Object.keys(list).length
-    //     if (numberOfTails > objLength) {
-    //         throw "The number of tails: " + numberOfTails + ", exceeds the number of keys in the object: " + objLength
-    //     } else {
-    //         let tailObject = {}
-    //         const keys = Object.keys(list)
-    //         for (let i = keys.length - numberOfTails; i < keys.length; i++) {
-    //             tailObject[keys[i]] = list[keys[i]]
-    //         }
-
-    //         return tailObject
-    //     }
-    // }
 }
 
 /**
