@@ -11,7 +11,7 @@ npm i lister
 ```js
 const lister = require('lister')
 console.log(lister.makeList(7))
-// [0, 1, 2, 3, 4, 5, 6, 7]
+// [0, 1, 2, 3, 4, 5, 6]
 ```
 
 ## Documentation
