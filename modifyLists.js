@@ -80,11 +80,28 @@ function removeAllDuplicates(list) {
     })
 }
 
+function shuffle(list) {
+    let usedIndexes = new Set()
+    let newList = []
+    list.forEach(el => {
+        let currRandInd = Math.floor(Math.random() * list.length)
+        while (usedIndexes.has(currRandInd)) {
+            currRandInd = Math.floor(Math.random() * list.length)
+        }
+        newList[currRandInd] = el
+        usedIndexes.add(currRandInd)
+    })
+
+    return newList
+}
+
 exportFunctions.flattenArray = flattenArray
 exportFunctions.removeIf = removeIf
 exportFunctions.removeAllInstancesOf = removeAllInstancesOf
 exportFunctions.replaceAllInstancesOf = replaceAllInstancesOf
 exportFunctions.cleanList = cleanList
 exportFunctions.removeAllDuplicates = removeAllDuplicates
+
+console.log(shuffle([1, 2, 3, 4, 5, 6, 7]))
 
 module.exports = exportFunctions
