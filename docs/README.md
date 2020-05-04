@@ -140,6 +140,13 @@ lister.peek([1, 2, 3, 4])
 // 4
 ```
 
+#### prime
+Determines if a number is prime
+```js
+lister.prime(11)
+// true
+```
+
 #### removeAllDuplicates
 Removes all duplicated items in the list. Preserves the first instance of each unique item.
 ```js

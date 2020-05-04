@@ -101,7 +101,6 @@ exportFunctions.removeAllInstancesOf = removeAllInstancesOf
 exportFunctions.replaceAllInstancesOf = replaceAllInstancesOf
 exportFunctions.cleanList = cleanList
 exportFunctions.removeAllDuplicates = removeAllDuplicates
-
-console.log(shuffle([1, 2, 3, 4, 5, 6, 7]))
+// exportFunctions.shuffle = shuffle
 
 module.exports = exportFunctions
