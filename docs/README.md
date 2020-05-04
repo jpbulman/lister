@@ -39,6 +39,13 @@ lister.count(dogStrArr, "the")
 // 2
 ```
 
+### even
+Returns if the number is even (divisible by 2)
+```js
+lister.even(2)
+// true
+```
+
 #### flattenArray
 Takes an array of items and lists and merges them all together into one single list
 ```js
@@ -68,8 +75,9 @@ lister.includesOr(oneToFour, twoAndFive)
 #### indicesWhere
 Returns a list of indices of the elements that satisfy a boolean function
 ```js
+// Get list of indices of elements who are even
 const oneToTen = [0, 2, 3, 9, 4, -2]
-lister.indicesWhere(oneToTen, (el) => el % 2 === 0)
+lister.indicesWhere(oneToTen, lister.even)
 // [0, 1, 4, 5]
 ```
 
@@ -85,7 +93,7 @@ lister.listTail([1, 1, 2, 3, 5, 8], 2)
 Builds a list that is n items long with a given procedure. 
 ```js
 // Gets the first 5 even numbers, starting at 0
-lister.makeList(5, 0, (el) => el % 2 === 0)
+lister.makeList(5, 0, lister.even)
 // [0, 2, 4, 6, 8]
 ```
 
@@ -117,11 +125,26 @@ lister.mode(list)
 // [2, 3]
 ```
 
+#### odd
+Returns if the number is odd (whole and not divisible by 2)
+```js
+lister.odd(5)
+// true
+```
+
+
 #### peek
 Returns the value of the last element in the array without removing it, like .pop() would
 ```js
 lister.peek([1, 2, 3, 4])
 // 4
+```
+
+#### prime
+Determines if a number is prime
+```js
+lister.prime(11)
+// true
 ```
 
 #### removeAllDuplicates
@@ -142,8 +165,9 @@ lister.removeAllInstancesOf(list, 2)
 #### removeIf
 Removes any items from the list if they return ```true``` for the given condition method
 ```js
+// Gets rid of even numbers
 const list = lister.makeList(5, 1) // [1, 2, 3, 4, 5] 
-lister.removeIf(list, (el) => el % 2 === 0)
+lister.removeIf(list, lister.even)
 // [1, 3, 5]
 ```
 
