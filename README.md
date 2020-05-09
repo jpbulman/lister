@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/jpbulman/listerJS.svg?token=HvzeUFf9iuSD6ifqQNLz&branch=master)](https://travis-ci.com/jpbulman/lister)
+[![Build Status](https://travis-ci.com/jpbulman/lister.svg?token=HvzeUFf9iuSD6ifqQNLz&branch=master)](https://travis-ci.com/jpbulman/lister)
 
 ## Installation
 To install Lister, simply use
